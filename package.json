@@ -1,0 +1,35 @@
+{
+  "name": "dawn",
+  "version": "1.0.0",
+  "description": "A JavaScript platform game built with Phaser 3.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dansantander/dawn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dansantander/dawn/issues"
+  },
+  "homepage": "https://github.com/dansantander/dawn#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.0",
+    "css-loader": "^4.2.2",
+    "file-loader": "^6.1.0",
+    "jest": "^26.4.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "phaser": "^3.24.1"
+  }
+}
