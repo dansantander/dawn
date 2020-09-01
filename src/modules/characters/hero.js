@@ -26,6 +26,18 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       frameRate: 20,
       repeat: -1,
     });
+
+    this.scene.anims.create({
+      key: 'stand',
+      frames: this.scene.anims.generateFrameNumbers('heroRun', { start: 2, end: 2 }),
+      frameRate: 20,
+      repeat: -1,
+    });
+  }
+
+  stand() {
+    this.anims.play('stand', true);
+    this.setVelocityX(0);
   }
 
   move(side) {
@@ -33,13 +45,13 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       case 'right': {
         this.flipX = false;
         this.anims.play('run', true);
-        this.setVelocityX(160);
+        this.setVelocityX(300);
         break;
       }
       case 'left': {
         this.flipX = true;
         this.anims.play('run', true);
-        this.setVelocityX(-160);
+        this.setVelocityX(-300);
         break;
       }
       default: { break; }
@@ -48,7 +60,7 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
 
   jump() {
     this.anims.play('jump', true);
-    this.setVelocityY(-200);
+    this.setVelocityY(-300);
   }
 }
 
