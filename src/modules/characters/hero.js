@@ -19,6 +19,13 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       frameRate: 20,
       repeat: -1,
     });
+
+    this.scene.anims.create({
+      key: 'jump',
+      frames: this.scene.anims.generateFrameNumbers('heroRun', { start: 4, end: 4 }),
+      frameRate: 20,
+      repeat: -1,
+    });
   }
 
   move(side) {
@@ -37,6 +44,11 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       }
       default: { break; }
     }
+  }
+
+  jump() {
+    this.anims.play('jump', true);
+    this.setVelocityY(-200);
   }
 }
 

@@ -4,6 +4,7 @@ import bg0 from '../../assets/background_0.png';
 import bg1 from '../../assets/background_1.png';
 import bg2 from '../../assets/background_2.png';
 import heroRun from '../../assets/hero/heroRun3.png';
+import heroJump from '../../assets/hero/heroJump.png';
 
 const createTextureLoop = (scene, quantity, texture, scrollFactor) => {
   let x = 0;
@@ -32,6 +33,7 @@ class SceneBackground extends Phaser.Scene {
     this.load.image('bg1', bg1);
     this.load.image('bg2', bg2);
     this.load.spritesheet('heroRun', heroRun, { frameWidth: 62, frameHeight: 47 });
+    this.load.spritesheet('heroJump', heroJump, { frameWidth: 60, frameHeight: 56 });
   }
 
   create() {
@@ -65,6 +67,11 @@ class SceneBackground extends Phaser.Scene {
       // move right
       cam.scrollX += speed;
       this.hero.move('right');
+    }
+
+    if (cursors.up.isDown && this.hero.body.touching.down) {
+      console.log('in?');
+      this.hero.jump();
     }
   }
 }
