@@ -20,6 +20,24 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       repeat: -1,
     });
   }
+
+  move(side) {
+    switch (side) {
+      case 'right': {
+        this.flipX = false;
+        this.anims.play('run', true);
+        this.setVelocityX(160);
+        break;
+      }
+      case 'left': {
+        this.flipX = true;
+        this.anims.play('run', true);
+        this.setVelocityX(-160);
+        break;
+      }
+      default: { break; }
+    }
+  }
 }
 
 export default Hero;
