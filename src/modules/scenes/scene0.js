@@ -72,13 +72,13 @@ class Scene0 extends Phaser.Scene {
       'Scene2',
     );
 
-    this.instructionsButton = new Button(
+    this.scoresButton = new Button(
       this,
       width / 2,
       (height / 2) + 200,
       'btnSC1',
       'btnSC2',
-      'Scene2',
+      'Scene3',
     );
   }
 }

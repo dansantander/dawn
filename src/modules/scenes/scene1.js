@@ -7,6 +7,7 @@ import moon from '../../assets/bg/moon.png';
 import heroRun from '../../assets/hero/heroRun3.png';
 import heroJump from '../../assets/hero/heroJump.png';
 import platform1 from '../../assets/platforms/platform1.png';
+import crystal from '../../assets/objects/crystal.png';
 
 const createTextureLoop = (scene, quantity, texture, scrollFactor) => {
   let x = 0;
@@ -20,7 +21,7 @@ const createTextureLoop = (scene, quantity, texture, scrollFactor) => {
   }
 };
 
-class SceneBackground extends Phaser.Scene {
+class Scene1 extends Phaser.Scene {
   constructor() {
     super({ key: 'Scene1' });
     /* eslint-disable */
@@ -38,6 +39,7 @@ class SceneBackground extends Phaser.Scene {
     this.load.spritesheet('heroJump', heroJump, { frameWidth: 60, frameHeight: 56 });
     this.load.spritesheet('moon', moon, { frameWidth: 113, frameHeight: 92 });
     this.load.image('platform1', platform1);
+    this.load.image('crystal', crystal);
   }
 
   create() {
@@ -84,6 +86,14 @@ class SceneBackground extends Phaser.Scene {
     });
 
     this.addPlatform(191, 800);
+
+    this.crystals = this.physics.add.group({
+      key: 'crystal',
+      repeat: 11,
+      setXY: { x: 500, y: 0, stepX: 70 },
+    });
+
+    this.physics.add.collider(this.crystals, this.platformGroup);
 
     /* const platforms = this.physics.add.staticGroup();
     platforms.create(700, 600, 'platform1').setScale(2).refreshBody(); */
@@ -181,4 +191,4 @@ class SceneBackground extends Phaser.Scene {
 }
 
 
-export default SceneBackground;
+export default Scene1;
