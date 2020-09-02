@@ -64,14 +64,14 @@ class SceneBackground extends Phaser.Scene {
     this.platformGroup = this.add.group({
       // once a platform is removed, it's added to the pool
       removeCallback(platform) {
-        platform.scene.platformPool.add(platform1);
+        platform.scene.platformPool.add(platform);
       },
     });
 
     this.platformPool = this.add.group({
       // once a platform is removed, it's added to the pool
       removeCallback(platform) {
-        platform.scene.platformPool.add(platform1);
+        platform.scene.platformGroup.add(platform);
       },
     });
 
@@ -113,7 +113,7 @@ class SceneBackground extends Phaser.Scene {
   update() {
     const cursors = this.input.keyboard.createCursorKeys();
     const cam = this.cameras.main;
-    const speed = 5;
+    const speed = 3;
 
     if (cursors.left.isDown) {
       // move left
@@ -131,18 +131,16 @@ class SceneBackground extends Phaser.Scene {
       this.hero.jump();
     }
 
-    if (this.hero.y > 700 || this.hero.x < cam.x) {
-
-      console.log(cam.x);
+    if (this.hero.y > 700 || this.hero.x < cam.scrollX - 124) {
       console.log('GAME OVER');
     }
 
     // recycling platforms
-    let minDistance = 900;
+    let minDistance = 1100;
     let rightmostPlatformHeight = 0;
 
     this.platformGroup.getChildren().forEach((platform) => {
-      const platformDistance = 900 - platform.x - platform.displayWidth / 2;
+      const platformDistance = 1100 - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
         rightmostPlatformHeight = platform.y;
