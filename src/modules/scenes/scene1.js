@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import Hero from '../characters/hero';
-import bg0 from '../../assets/background_0.png';
-import bg1 from '../../assets/background_1.png';
-import bg2 from '../../assets/background_2.png';
+import bg0 from '../../assets/bg/background_0.png';
+import bg1 from '../../assets/bg/background_1.png';
+import bg2 from '../../assets/bg/background_2.png';
 import moon from '../../assets/bg/moon.png';
 import heroRun from '../../assets/hero/heroRun3.png';
 import heroJump from '../../assets/hero/heroJump.png';
@@ -36,7 +36,7 @@ class SceneBackground extends Phaser.Scene {
     this.load.image('bg2', bg2);
     this.load.spritesheet('heroRun', heroRun, { frameWidth: 62, frameHeight: 47 });
     this.load.spritesheet('heroJump', heroJump, { frameWidth: 60, frameHeight: 56 });
-    this.load.spritesheet('moon', moon, { frameWidth: 112, frameHeight: 92 });
+    this.load.spritesheet('moon', moon, { frameWidth: 113, frameHeight: 92 });
     this.load.image('platform1', platform1);
   }
 
@@ -50,8 +50,16 @@ class SceneBackground extends Phaser.Scene {
     bg0.scaleX = bg0.scaleY;
     bg0.setScrollFactor(0);
 
-    const moon = this.add.sprite(width / 2, height / 2, 'moon');
-    moon.setScrollFactor(0);
+    this.moon = this.add.sprite(200, 200, 'moon');
+    this.moon.setScale(2);
+    this.moon.setScrollFactor(0);
+
+    this.anims.create({
+      key: 'moon',
+      frames: this.anims.generateFrameNumbers('moon', { start: 0, end: 7 }),
+      frameRate: 20,
+      repeat: -1,
+    });
 
     createTextureLoop(this, 2, 'bg1', 0.25);
     createTextureLoop(this, 2, 'bg2', 0.5);
@@ -113,7 +121,8 @@ class SceneBackground extends Phaser.Scene {
   update() {
     const cursors = this.input.keyboard.createCursorKeys();
     const cam = this.cameras.main;
-    const speed = 3;
+    const speed = 2;
+    this.moon.anims.play('moon', true);
 
     if (cursors.left.isDown) {
       // move left
@@ -132,7 +141,7 @@ class SceneBackground extends Phaser.Scene {
     }
 
     if (this.hero.y > 700 || this.hero.x < cam.scrollX - 124) {
-      console.log('GAME OVER');
+      /* console.log('GAME OVER'); */
     }
 
     // recycling platforms

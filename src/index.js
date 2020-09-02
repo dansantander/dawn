@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-/* import Scene0 from './modules/scenes/scene0'; */
+import Scene0 from './modules/scenes/scene0';
 import Scene1 from './modules/scenes/scene1';
 
 const config = {
@@ -13,7 +13,7 @@ const config = {
       debug: true,
     },
   },
-  scene: [Scene1],
+  scene: [Scene0, Scene1],
 };
 
 // eslint-disable-next-line no-unused-vars

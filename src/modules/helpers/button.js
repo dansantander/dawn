@@ -18,12 +18,12 @@ class Button extends Phaser.GameObjects.Container {
 
     this.button.on('pointerover', () => {
       console.log('over')
-      this.button.setTexture(texture1);
+      this.button.setTexture(texture2);
     });
     
     this.button.on('pointerout', () => {
       console.log('out')
-      this.button.setTexture(texture2); 
+      this.button.setTexture(texture1); 
     });
 
     this.scene.add.existing(this);
