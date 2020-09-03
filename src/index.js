@@ -12,10 +12,10 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 400 },
-      debug: true,
+      debug: false,
     },
   },
-  scene: [Scene3, Scene1, Scene2, Scene0],
+  scene: [Scene1, Scene0, Scene2, Scene3],
 };
 
 // eslint-disable-next-line no-unused-vars

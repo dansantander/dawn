@@ -43,6 +43,9 @@ class Scene1 extends Phaser.Scene {
   }
 
   create() {
+    this.physics.world.setBounds(-100, 0,
+      this.sys.game.config.width * 3, this.sys.game.config.height);
+
     const { width } = this.game.scale; /* const width = this.game.scale.width; */
     const { height } = this.game.scale;
 
@@ -63,14 +66,20 @@ class Scene1 extends Phaser.Scene {
       repeat: -1,
     });
 
-    createTextureLoop(this, 2, 'bg1', 0.25);
-    createTextureLoop(this, 2, 'bg2', 0.5);
+    createTextureLoop(this, 3, 'bg1', 0.25);
+    createTextureLoop(this, 5, 'bg2', 0.5);
 
-    // Ground & Lava
-    const ground = this.physics.add.staticGroup();
-    ground.create(150, 700, 'platform1').setScale(2).refreshBody();
+    this.score = 0;
+    this.scoreText = this.add.text(900, 16, 'score: 0', { fontSize: '20px', fill: '#fff' });
+    this.scoreText.setScrollFactor(0);
 
-    // Platforms
+    // ++ Ground & Lava ++
+    /*  const ground = this.physics.add.staticGroup();
+    ground.create(150, 700, 'platform1').setScale(2).refreshBody(); */
+
+    // ++ Platforms ++
+
+    // group with all active platforms.
     this.platformGroup = this.add.group({
       // once a platform is removed, it's added to the pool
       removeCallback(platform) {
@@ -78,14 +87,16 @@ class Scene1 extends Phaser.Scene {
       },
     });
 
+    // pool
     this.platformPool = this.add.group({
-      // once a platform is removed, it's added to the pool
+      // once a platform is removed from the pool, it's added to the active platforms group
       removeCallback(platform) {
         platform.scene.platformGroup.add(platform);
       },
     });
 
-    this.addPlatform(191, 800);
+    // adding a platform to the game, the arguments are platform width, x position, and y position
+    this.addPlatform(250, 400, 300);
 
     this.crystals = this.physics.add.group({
       key: 'crystal',
@@ -96,17 +107,17 @@ class Scene1 extends Phaser.Scene {
     /* const platforms = this.physics.add.staticGroup();
     platforms.create(700, 600, 'platform1').setScale(2).refreshBody(); */
 
-    this.hero = new Hero(this, 100, 300, 'heroRun');
+    this.hero = new Hero(this, 50, 300, 'heroRun');
 
     this.physics.add.overlap(this.hero, this.crystals, this.collectCrystal, null, this);
 
     // Colliders
     this.physics.add.collider(this.crystals, this.platformGroup);
     this.hero.setCollideWorldBounds(true);
-    this.physics.add.collider(this.hero, ground);
+    /* this.physics.add.collider(this.hero, ground); */
     this.physics.add.collider(this.hero, this.platformGroup);
 
-    this.cameras.main.setBounds(0, 0, width * 3, height);
+    this.cameras.main.setBounds(0, 0, width * 2, height);
   }
 
   update() {
@@ -131,16 +142,17 @@ class Scene1 extends Phaser.Scene {
       this.hero.jump();
     }
 
-    if (this.hero.y > 700 || this.hero.x < cam.scrollX - 124) {
-      /* console.log('GAME OVER'); */
+    if (this.hero.y > 600 || this.hero.x < cam.scrollX - 100) {
+      console.log('enter?');
+      this.physics.pause();
     }
 
     // recycling platforms
-    let minDistance = 1100;
+    let minDistance = 2200;
     let rightmostPlatformHeight = 0;
 
     this.platformGroup.getChildren().forEach((platform) => {
-      const platformDistance = 1100 - platform.x - platform.displayWidth / 2;
+      const platformDistance = 900 - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
         rightmostPlatformHeight = platform.y;
@@ -153,45 +165,51 @@ class Scene1 extends Phaser.Scene {
     }, this);
 
     if (minDistance > this.nextPlatformDistance) {
-      /* const nextPlatformWidth = Phaser.Math.Between(50, 250); */
-      const nextPlatformWidth = 191;
-      /* const platformRandomHeight = 10 * Phaser.Math.Between(-40, 40); */
-      /* const platformRandomHeight = 3; */
+      const nextPlatformWidth = Phaser.Math.Between(80, 250);
+      const platformRandomHeight = 10 * Phaser.Math.Between(-10, 10);
 
-      const nextPlatformGap = 200;
+      const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
       const minPlatformHeight = window.innerHeight * 0.4;
-      const maxPlatformHeight = window.innerHeight * 0.8;
+      const maxPlatformHeight = window.innerHeight * 0.6;
       const nextPlatformHeight = Phaser.Math.Clamp(
         nextPlatformGap,
         minPlatformHeight,
         maxPlatformHeight,
       );
-      this.addPlatform(nextPlatformWidth, 900 + nextPlatformWidth / 2, nextPlatformHeight);
+      this.addPlatform(nextPlatformWidth, 2200 + nextPlatformWidth / 2, nextPlatformHeight);
     }
   }
 
-  addPlatform(platformWidth, posX) {
+  addPlatform(platformWidth, posX, posY) {
     let platform;
     if (this.platformPool.getLength()) {
       platform = this.platformPool.getFirst();
-      platform.x = posX; // sets x position of first platform
-      platform.active = true;
-      platform.visible = true;
+      platform.x = posX; // sets x position of first auto created platform
+      platform.y = posY; // sets y position of first auto created platform
+      platform.active = true; // An active object is one which
+      // is having its logic and internal systems updated.
+      platform.visible = true; // An invisible Game Object will skip rendering,
+      // but will still process update logic.
       this.platformPool.remove(platform);
     } else {
-      platform = this.physics.add.sprite(posX, 600, 'platform1');
-      platform.setScale(2);
+      platform = this.physics.add.sprite(posX, 500, 'platform1');
+      /* platform.setScale(2); */
       platform.setVelocityX(Phaser.Math.Between(-150, -200));
       platform.setGravityY(-400);
+      platform.setImmovable(true); // so that it doesn't move with an object collision
       this.platformGroup.add(platform);
-      platform.setImmovable(true);
     }
     platform.displayWidth = platformWidth;
-    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
+    this.nextPlatformDistance = 200;
+    // Phaser.Math.Between(70, 200);
   }
 
   collectCrystal(character, crystal) {
     crystal.disableBody(true, true);
+
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`);
+
     if (this.crystals.countActive(true) === 0) {
       this.crystals.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);

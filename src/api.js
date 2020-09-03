@@ -12,6 +12,7 @@ const apiData = (() => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
+          // mode: 'no-cors',
         },
       );
       return scores.json();

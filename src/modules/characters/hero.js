@@ -60,7 +60,7 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
 
   jump() {
     this.anims.play('jump', true);
-    this.setVelocityY(-300);
+    this.setVelocityY(-280);
   }
 }
 

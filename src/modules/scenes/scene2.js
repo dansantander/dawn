@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import bg0 from '../../assets/bg/background_0.png';
 import bg1 from '../../assets/bg/background_1.png';
 import bg2 from '../../assets/bg/background_2.png';
+import titleInstructions from '../../assets/bg/titleInstructions.png';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
@@ -12,6 +13,7 @@ class Scene2 extends Phaser.Scene {
     this.load.image('bg0', bg0);
     this.load.image('bg1', bg1);
     this.load.image('bg2', bg2);
+    this.load.image('titleInstructions', titleInstructions);
   }
 
   create() {
@@ -29,6 +31,8 @@ class Scene2 extends Phaser.Scene {
     const bg2 = this.add.image(width / 2, height / 2, 'bg2');
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
+
+    this.title = this.add.image(width / 2, 100, 'titleInstructions');
   }
 }
 

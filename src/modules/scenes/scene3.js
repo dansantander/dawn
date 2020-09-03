@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import bg0 from '../../assets/bg/background_0.png';
 import bg1 from '../../assets/bg/background_1.png';
 import bg2 from '../../assets/bg/background_2.png';
+import titleScores from '../../assets/bg/titleScores.png';
 import apiData from '../../api';
 
 class Scene3 extends Phaser.Scene {
@@ -13,6 +14,7 @@ class Scene3 extends Phaser.Scene {
     this.load.image('bg0', bg0);
     this.load.image('bg1', bg1);
     this.load.image('bg2', bg2);
+    this.load.image('titleScores', titleScores);
   }
 
   create() {
@@ -31,20 +33,37 @@ class Scene3 extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
-    const style = {
-      font: '32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
-    };
+    this.title = this.add.image(width / 2, 100, 'titleScores');
 
-    this.add.text(0, 0, 'phaser 2.4 text bounds', style);
+    /*     const style = {
+      font: '28px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
+    }; */
 
     apiData.getData().then((response) => {
       console.log(response.result[0]);
-      const sortedResponse = response.result.sort((a, b) => b.score - a.score);
+      response.result.sort((a, b) => b.score - a.score);
       console.log(response.result[0]);
+      let list = '';
 
       for (let i = 0; i < 5; i += 1) {
-        this.add.text(550, (i + 1) * 50, `${i + 1}. ${response.result[i].user} : ${response.result[i].score}`, style);
+        list = `${i + 1}. ${response.result[i].user} : ${response.result[i].score} \n\n`;
       }
+
+      this.madeByText = this.add.text(0, 0, list, {
+        fontSize: '26px',
+        fill: '#fff',
+      });
+
+      this.zone = this.add.zone(
+        this.width / 2,
+        this.height / 2,
+        this.width,
+        this.height,
+      );
+
+      Phaser.Display.Align.In.Center(this.madeByText, this.zone);
+
+      this.madeByText.setY(80);
     });
   }
 }
