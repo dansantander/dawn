@@ -32,44 +32,19 @@ class Scene3 extends Phaser.Scene {
     bg2.scaleX = bg2.scaleY;
 
     const style = {
-      font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
+      font: '32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
     };
 
     this.add.text(0, 0, 'phaser 2.4 text bounds', style);
 
-    console.log(apiData.getData());
+    apiData.getData().then((response) => {
+      console.log(response.result[0]);
+      const sortedResponse = response.result.sort((a, b) => b.score - a.score);
+      console.log(response.result[0]);
 
-    apiData.getData().then((result) => {
-      console.log(result);
-      /*  const style = {
-        font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
-      };
-
-      let name = result[0].user;
-      let score = result[0].score;
-
-      name = this.add.text(400, 400, style);
-      name.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-
-      score = this.add.text(400, 400, style);
-      score.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2); */
-
-
-      /*  const scoreContainer = document.createElement('div');
-
-      const playerDiv = document.createElement('div');
-      playerDiv.classList.add('player');
-      scoreContainer.appendChild(playerDiv);
-
-      const namePlayer = document.createElement('h3');
-      namePlayer.classList.add('nameRecord');
-      playerDiv.appendChild(namePlayer);
-      playerDiv.textContent = result[0].user;
-
-      const scorePlayer = document.createElement('h3');
-      scorePlayer.classList.add('scoreRecord');
-      playerDiv.appendChild(scorePlayer);
-      scorePlayer.textContent = result[0].score; */
+      for (let i = 0; i < 5; i += 1) {
+        this.add.text(550, (i + 1) * 50, `${i + 1}. ${response.result[i].user} : ${response.result[i].score}`, style);
+      }
     });
   }
 }

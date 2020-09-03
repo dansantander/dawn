@@ -15,7 +15,7 @@ const config = {
       debug: true,
     },
   },
-  scene: [Scene0, Scene1, Scene2, Scene3],
+  scene: [Scene3, Scene1, Scene2, Scene0],
 };
 
 // eslint-disable-next-line no-unused-vars

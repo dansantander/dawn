@@ -89,43 +89,24 @@ class Scene1 extends Phaser.Scene {
 
     this.crystals = this.physics.add.group({
       key: 'crystal',
-      repeat: 11,
-      setXY: { x: 500, y: 0, stepX: 70 },
+      repeat: 6,
+      setXY: { x: 500, y: 0, stepX: 200 },
     });
-
-    this.physics.add.collider(this.crystals, this.platformGroup);
 
     /* const platforms = this.physics.add.staticGroup();
     platforms.create(700, 600, 'platform1').setScale(2).refreshBody(); */
 
     this.hero = new Hero(this, 100, 300, 'heroRun');
 
+    this.physics.add.overlap(this.hero, this.crystals, this.collectCrystal, null, this);
+
     // Colliders
+    this.physics.add.collider(this.crystals, this.platformGroup);
     this.hero.setCollideWorldBounds(true);
     this.physics.add.collider(this.hero, ground);
     this.physics.add.collider(this.hero, this.platformGroup);
 
     this.cameras.main.setBounds(0, 0, width * 3, height);
-  }
-
-  addPlatform(platformWidth, posX) {
-    let platform;
-    if (this.platformPool.getLength()) {
-      platform = this.platformPool.getFirst();
-      platform.x = posX; // sets x position of first platform
-      platform.active = true;
-      platform.visible = true;
-      this.platformPool.remove(platform);
-    } else {
-      platform = this.physics.add.sprite(posX, 600, 'platform1');
-      platform.setScale(2);
-      platform.setVelocityX(Phaser.Math.Between(-150, -200));
-      platform.setGravityY(-400);
-      this.platformGroup.add(platform);
-      platform.setImmovable(true);
-    }
-    platform.displayWidth = platformWidth;
-    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
   }
 
   update() {
@@ -175,9 +156,9 @@ class Scene1 extends Phaser.Scene {
       /* const nextPlatformWidth = Phaser.Math.Between(50, 250); */
       const nextPlatformWidth = 191;
       /* const platformRandomHeight = 10 * Phaser.Math.Between(-40, 40); */
-      const platformRandomHeight = 34;
+      /* const platformRandomHeight = 3; */
 
-      const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
+      const nextPlatformGap = 200;
       const minPlatformHeight = window.innerHeight * 0.4;
       const maxPlatformHeight = window.innerHeight * 0.8;
       const nextPlatformHeight = Phaser.Math.Clamp(
@@ -186,6 +167,35 @@ class Scene1 extends Phaser.Scene {
         maxPlatformHeight,
       );
       this.addPlatform(nextPlatformWidth, 900 + nextPlatformWidth / 2, nextPlatformHeight);
+    }
+  }
+
+  addPlatform(platformWidth, posX) {
+    let platform;
+    if (this.platformPool.getLength()) {
+      platform = this.platformPool.getFirst();
+      platform.x = posX; // sets x position of first platform
+      platform.active = true;
+      platform.visible = true;
+      this.platformPool.remove(platform);
+    } else {
+      platform = this.physics.add.sprite(posX, 600, 'platform1');
+      platform.setScale(2);
+      platform.setVelocityX(Phaser.Math.Between(-150, -200));
+      platform.setGravityY(-400);
+      this.platformGroup.add(platform);
+      platform.setImmovable(true);
+    }
+    platform.displayWidth = platformWidth;
+    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
+  }
+
+  collectCrystal(character, crystal) {
+    crystal.disableBody(true, true);
+    if (this.crystals.countActive(true) === 0) {
+      this.crystals.children.iterate((child) => {
+        child.enableBody(true, child.x, 0, true, true);
+      });
     }
   }
 }
