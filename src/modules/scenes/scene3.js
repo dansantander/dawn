@@ -1,20 +1,9 @@
 import Phaser from 'phaser';
-import bg0 from '../../assets/bg/background_0.png';
-import bg1 from '../../assets/bg/background_1.png';
-import bg2 from '../../assets/bg/background_2.png';
-import titleScores from '../../assets/bg/titleScores.png';
 import apiData from '../../api';
 
 class Scene3 extends Phaser.Scene {
   constructor() {
     super({ key: 'Scene3' });
-  }
-
-  preload() {
-    this.load.image('bg0', bg0);
-    this.load.image('bg1', bg1);
-    this.load.image('bg2', bg2);
-    this.load.image('titleScores', titleScores);
   }
 
   create() {
@@ -35,35 +24,21 @@ class Scene3 extends Phaser.Scene {
 
     this.title = this.add.image(width / 2, 100, 'titleScores');
 
-    /*     const style = {
-      font: '28px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
-    }; */
-
     apiData.getData().then((response) => {
       console.log(response.result[0]);
       response.result.sort((a, b) => b.score - a.score);
       console.log(response.result[0]);
-      let list = '';
+      let listItems = '';
 
-      for (let i = 0; i < 5; i += 1) {
-        list = `${i + 1}. ${response.result[i].user} : ${response.result[i].score} \n\n`;
+      for (let i = 0; i < 10; i += 1) {
+        listItems += `${i + 1}. ${response.result[i].user} : ${response.result[i].score} \n\n`;
       }
 
-      this.madeByText = this.add.text(0, 0, list, {
+      this.fullList = this.add.text(460, 220, listItems, {
+        font: '20px monospace',
         fontSize: '26px',
         fill: '#fff',
       });
-
-      this.zone = this.add.zone(
-        this.width / 2,
-        this.height / 2,
-        this.width,
-        this.height,
-      );
-
-      Phaser.Display.Align.In.Center(this.madeByText, this.zone);
-
-      this.madeByText.setY(80);
     });
   }
 }

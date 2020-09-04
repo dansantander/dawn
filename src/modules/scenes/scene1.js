@@ -143,7 +143,6 @@ class Scene1 extends Phaser.Scene {
     }
 
     if (this.hero.y > 600 || this.hero.x < cam.scrollX - 100) {
-      console.log('enter?');
       this.physics.pause();
     }
 

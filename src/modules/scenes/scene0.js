@@ -1,35 +1,9 @@
 import Phaser from 'phaser';
 import Button from '../helpers/button';
-import bg0 from '../../assets/bg/background_0.png';
-import bg1 from '../../assets/bg/background_1.png';
-import bg2 from '../../assets/bg/background_2.png';
-import bg3 from '../../assets/bg/background_3.png';
-import logo from '../../assets/bg/logo.png';
-import btnStart1 from '../../assets/objects/btnStart1.png';
-import btnStart2 from '../../assets/objects/btnStart2.png';
-import btnInstructions1 from '../../assets/objects/btnInstructions1.png';
-import btnInstructions2 from '../../assets/objects/btnInstructions2.png';
-import btnScores1 from '../../assets/objects/btnScores1.png';
-import btnScores2 from '../../assets/objects/btnScores2.png';
-
 
 class Scene0 extends Phaser.Scene {
   constructor() {
-    super({ key: 'scene0' });
-  }
-
-  preload() {
-    this.load.image('bg0', bg0);
-    this.load.image('bg1', bg1);
-    this.load.image('bg2', bg2);
-    this.load.image('bg3', bg3);
-    this.load.image('logo', logo);
-    this.load.image('btnS1', btnStart1);
-    this.load.image('btnS2', btnStart2);
-    this.load.image('btnI1', btnInstructions1);
-    this.load.image('btnI2', btnInstructions2);
-    this.load.image('btnSC1', btnScores1);
-    this.load.image('btnSC2', btnScores2);
+    super({ key: 'Scene0' });
   }
 
   create() {

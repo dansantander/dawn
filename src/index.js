@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import LoadScene from './modules/scenes/loadScene';
 import Scene0 from './modules/scenes/scene0';
 import Scene1 from './modules/scenes/scene1';
 import Scene2 from './modules/scenes/scene2';
@@ -15,7 +16,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [Scene1, Scene0, Scene2, Scene3],
+  scene: [LoadScene, Scene0, Scene1, Scene2, Scene3],
 };
 
 // eslint-disable-next-line no-unused-vars
