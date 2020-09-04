@@ -16,6 +16,7 @@ import btnMenu1 from '../../assets/objects/btnMenu1.png';
 import btnMenu2 from '../../assets/objects/btnMenu2.png';
 import titleInstructions from '../../assets/bg/titleInstructions.png';
 import titleScores from '../../assets/bg/titleScores.png';
+/* import formHTML from '../helpers/form.html'; */
 
 class LoadScene extends Phaser.Scene {
   constructor() {
@@ -40,6 +41,7 @@ class LoadScene extends Phaser.Scene {
     this.load.image('btnMenu2', btnMenu2);
     this.load.image('titleInstructions', titleInstructions);
     this.load.image('titleScores', titleScores);
+    /* this.load.html('formHTML', formHTML); */
 
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
@@ -79,7 +81,7 @@ class LoadScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('Scene0');
+      this.scene.start('GameOver');
     });
   }
 }

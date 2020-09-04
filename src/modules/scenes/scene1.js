@@ -145,11 +145,10 @@ class Scene1 extends Phaser.Scene {
     if (this.hero.y > 600 || this.hero.x < cam.scrollX - 100) {
       this.physics.pause();
       this.time.addEvent({
-        delay: 2000,
+        delay: 1000,
         callbackScope: this,
         callback: () => {
           this.scene.start('GameOver');
-          this.scene.stop();
         },
       });
     }

@@ -10,6 +10,10 @@ const config = {
   type: Phaser.AUTO,
   width: 1100,
   height: 720,
+  parent: 'divld',
+  dom: {
+    createContainer: true,
+  },
   physics: {
     default: 'arcade',
     arcade: {

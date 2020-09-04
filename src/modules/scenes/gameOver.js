@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Button from '../helpers/button';
+import formHTML from '../helpers/form.html';
 
 class GameOver extends Phaser.Scene {
   constructor() {
@@ -22,10 +23,6 @@ class GameOver extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
-    this.title = this.add.image(width / 2, 100, 'titleInstructions');
-
-    this.add.text(width / 2, height / 2, 'You Lose');
-
     this.menuButton = new Button(
       this,
       80,
@@ -43,6 +40,13 @@ class GameOver extends Phaser.Scene {
       'btnPlay2',
       'Scene1',
     );
+
+    const inputScore = this.add.dom(width / 2, height / 2).createFromHTML(formHTML);
+    document.clear();
+
+    this.cont = this.add.container(0, 0);
+
+    this.cont.add(inputScore);
   }
 }
 
