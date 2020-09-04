@@ -1,19 +1,9 @@
 import Phaser from 'phaser';
-import bg0 from '../../assets/bg/background_0.png';
-import bg1 from '../../assets/bg/background_1.png';
-import bg2 from '../../assets/bg/background_2.png';
-import titleInstructions from '../../assets/bg/titleInstructions.png';
+import Button from '../helpers/button';
 
 class Scene2 extends Phaser.Scene {
   constructor() {
     super({ key: 'Scene2' });
-  }
-
-  preload() {
-    this.load.image('bg0', bg0);
-    this.load.image('bg1', bg1);
-    this.load.image('bg2', bg2);
-    this.load.image('titleInstructions', titleInstructions);
   }
 
   create() {
@@ -33,6 +23,24 @@ class Scene2 extends Phaser.Scene {
     bg2.scaleX = bg2.scaleY;
 
     this.title = this.add.image(width / 2, 100, 'titleInstructions');
+
+    this.menuButton = new Button(
+      this,
+      80,
+      650,
+      'btnMenu1',
+      'btnMenu2',
+      'Scene0',
+    );
+
+    this.playButton = new Button(
+      this,
+      1020,
+      650,
+      'btnPlay1',
+      'btnPlay2',
+      'Scene1',
+    );
   }
 }
 

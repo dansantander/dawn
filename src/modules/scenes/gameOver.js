@@ -1,10 +1,9 @@
 import Phaser from 'phaser';
-import apiData from '../../api';
 import Button from '../helpers/button';
 
-class Scene3 extends Phaser.Scene {
+class GameOver extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene3' });
+    super({ key: 'GameOver' });
   }
 
   create() {
@@ -23,7 +22,9 @@ class Scene3 extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
-    this.title = this.add.image(width / 2, 100, 'titleScores');
+    this.title = this.add.image(width / 2, 100, 'titleInstructions');
+
+    this.add.text(width / 2, height / 2, 'You Lose');
 
     this.menuButton = new Button(
       this,
@@ -42,24 +43,7 @@ class Scene3 extends Phaser.Scene {
       'btnPlay2',
       'Scene1',
     );
-
-    apiData.getData().then((response) => {
-      console.log(response.result[0]);
-      response.result.sort((a, b) => b.score - a.score);
-      console.log(response.result[0]);
-      let listItems = '';
-
-      for (let i = 0; i < 10; i += 1) {
-        listItems += `${i + 1}. ${response.result[i].user} : ${response.result[i].score} \n\n`;
-      }
-
-      this.fullList = this.add.text(460, 220, listItems, {
-        font: '20px monospace',
-        fontSize: '26px',
-        fill: '#fff',
-      });
-    });
   }
 }
 
-export default Scene3;
+export default GameOver;

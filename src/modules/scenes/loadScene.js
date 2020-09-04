@@ -10,6 +10,11 @@ import btnInstructions1 from '../../assets/objects/btnInstructions1.png';
 import btnInstructions2 from '../../assets/objects/btnInstructions2.png';
 import btnScores1 from '../../assets/objects/btnScores1.png';
 import btnScores2 from '../../assets/objects/btnScores2.png';
+import btnPlay1 from '../../assets/objects/btnPlay1.png';
+import btnPlay2 from '../../assets/objects/btnPlay2.png';
+import btnMenu1 from '../../assets/objects/btnMenu1.png';
+import btnMenu2 from '../../assets/objects/btnMenu2.png';
+import titleInstructions from '../../assets/bg/titleInstructions.png';
 import titleScores from '../../assets/bg/titleScores.png';
 
 class LoadScene extends Phaser.Scene {
@@ -29,6 +34,11 @@ class LoadScene extends Phaser.Scene {
     this.load.image('btnI2', btnInstructions2);
     this.load.image('btnSC1', btnScores1);
     this.load.image('btnSC2', btnScores2);
+    this.load.image('btnPlay1', btnPlay1);
+    this.load.image('btnPlay2', btnPlay2);
+    this.load.image('btnMenu1', btnMenu1);
+    this.load.image('btnMenu2', btnMenu2);
+    this.load.image('titleInstructions', titleInstructions);
     this.load.image('titleScores', titleScores);
 
     const progressBar = this.add.graphics();
@@ -69,7 +79,7 @@ class LoadScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('Scene3');
+      this.scene.start('Scene0');
     });
   }
 }
