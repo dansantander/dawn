@@ -5,7 +5,7 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture);
     this.scene = scene;
     this.alive = true;
-    this.setScale(2);
+    this.setScale(1.6);
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.createMoves();

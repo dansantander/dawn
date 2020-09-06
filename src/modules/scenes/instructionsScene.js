@@ -22,7 +22,13 @@ class InstructionsScene extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
-    this.title = this.add.image(width / 2, 100, 'titleInstructions');
+    this.title = this.add.image(width / 2, 100, 'titleInstructions2');
+
+    this.run = this.add.image(width / 2, 300, 'instructionsRun');
+    this.runText = this.add.text(450, 330, 'Keep left or right keys pressed to run', { fontSize: '20px', fill: '#fff' });
+
+    this.jump = this.add.image(300, 480, 'instructionsJump');
+    this.jumpText = this.add.text(450, 440, 'Press up key to jump', { fontSize: '20px', fill: '#fff' });
 
     this.menuButton = new Button(
       this,

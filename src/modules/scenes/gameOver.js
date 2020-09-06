@@ -24,6 +24,9 @@ class GameOver extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
+    const gameOver = this.add.image(width / 2, 150, 'gameOver');
+    gameOver.setScale(0.8);
+
     this.menuButton = new Button(
       this,
       80,
@@ -42,7 +45,7 @@ class GameOver extends Phaser.Scene {
       'GameScene',
     );
 
-    const inputScore = this.add.dom(width / 2, height / 2).createFromHTML(formHTML);
+    const inputScore = this.add.dom(width / 2, (height / 2) + 100).createFromHTML(formHTML);
     document.clear();
     this.cont = this.add.container(0, 0);
     this.cont.add(inputScore);

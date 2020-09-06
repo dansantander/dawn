@@ -124,6 +124,7 @@ class GameScene extends Phaser.Scene {
     const cursors = this.input.keyboard.createCursorKeys();
     const cam = this.cameras.main;
     const speed = 2;
+
     this.moon.anims.play('moon', true);
 
     if (cursors.left.isDown) {

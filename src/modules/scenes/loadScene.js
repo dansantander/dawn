@@ -14,8 +14,11 @@ import btnPlay1 from '../../assets/objects/btnPlay1.png';
 import btnPlay2 from '../../assets/objects/btnPlay2.png';
 import btnMenu1 from '../../assets/objects/btnMenu1.png';
 import btnMenu2 from '../../assets/objects/btnMenu2.png';
-import titleInstructions from '../../assets/bg/titleInstructions.png';
-import titleScores from '../../assets/bg/titleScores.png';
+import titleInstructions2 from '../../assets/bg/titleInstructions2.png';
+import titleScores2 from '../../assets/bg/titleScores2.png';
+import instructionsRun from '../../assets/bg/instructionsRun.png';
+import instructionsJump from '../../assets/bg/instructionsJump.png';
+import gameOver from '../../assets/bg/gameOver.png';
 /* import formHTML from '../helpers/form.html'; */
 
 class LoadScene extends Phaser.Scene {
@@ -39,8 +42,11 @@ class LoadScene extends Phaser.Scene {
     this.load.image('btnPlay2', btnPlay2);
     this.load.image('btnMenu1', btnMenu1);
     this.load.image('btnMenu2', btnMenu2);
-    this.load.image('titleInstructions', titleInstructions);
-    this.load.image('titleScores', titleScores);
+    this.load.image('titleInstructions2', titleInstructions2);
+    this.load.image('instructionsRun', instructionsRun);
+    this.load.image('instructionsJump', instructionsJump);
+    this.load.image('titleScores2', titleScores2);
+    this.load.image('gameOver', gameOver);
     /* this.load.html('formHTML', formHTML); */
 
     const progressBar = this.add.graphics();
@@ -81,7 +87,7 @@ class LoadScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('GameOver');
+      this.scene.start('InstructionsScene');
     });
   }
 }

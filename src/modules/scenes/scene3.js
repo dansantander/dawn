@@ -23,7 +23,7 @@ class Scene3 extends Phaser.Scene {
     bg2.displayHeight = this.sys.game.config.height;
     bg2.scaleX = bg2.scaleY;
 
-    this.title = this.add.image(width / 2, 100, 'titleScores');
+    this.title = this.add.image(width / 2, 100, 'titleScores2');
 
     this.menuButton = new Button(
       this,
@@ -53,7 +53,7 @@ class Scene3 extends Phaser.Scene {
         listItems += `${i + 1}. ${response.result[i].user} : ${response.result[i].score} \n\n`;
       }
 
-      this.fullList = this.add.text(460, 220, listItems, {
+      this.fullList = this.add.text(460, 190, listItems, {
         font: '20px monospace',
         fontSize: '26px',
         fill: '#fff',
