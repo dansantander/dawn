@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import Button from '../helpers/button';
 
-class Scene2 extends Phaser.Scene {
+class InstructionsScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene2' });
+    super({ key: 'InstructionsScene' });
   }
 
   create() {
@@ -30,7 +30,7 @@ class Scene2 extends Phaser.Scene {
       650,
       'btnMenu1',
       'btnMenu2',
-      'Scene0',
+      'MenuScene',
     );
 
     this.playButton = new Button(
@@ -39,9 +39,9 @@ class Scene2 extends Phaser.Scene {
       650,
       'btnPlay1',
       'btnPlay2',
-      'Scene1',
+      'GameScene',
     );
   }
 }
 
-export default Scene2;
+export default InstructionsScene;

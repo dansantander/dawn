@@ -1,13 +1,14 @@
 import Phaser from 'phaser';
 import Button from '../helpers/button';
 import formHTML from '../helpers/form.html';
+import API from '../../api';
 
 class GameOver extends Phaser.Scene {
   constructor() {
     super({ key: 'GameOver' });
   }
 
-  create() {
+  create(score) {
     const { width } = this.game.scale;
     const { height } = this.game.scale;
 
@@ -29,7 +30,7 @@ class GameOver extends Phaser.Scene {
       650,
       'btnMenu1',
       'btnMenu2',
-      'Scene0',
+      'MenuScene',
     );
 
     this.playButton = new Button(
@@ -38,15 +39,29 @@ class GameOver extends Phaser.Scene {
       650,
       'btnPlay1',
       'btnPlay2',
-      'Scene1',
+      'GameScene',
     );
 
     const inputScore = this.add.dom(width / 2, height / 2).createFromHTML(formHTML);
     document.clear();
-
     this.cont = this.add.container(0, 0);
-
     this.cont.add(inputScore);
+
+    const savedScore = document.querySelector('#score');
+    savedScore.innerHTML = score.score;
+
+    const name = document.querySelector('#nameInput');
+    const submitBtn = document.querySelector('#submitBtn');
+
+    submitBtn.addEventListener('click', () => {
+      const savedName = name.value;
+      if (savedName === '') {
+        name.placeholder = 'Field can not be empty';
+      } else {
+        API.storeData(savedName, savedScore);
+        this.scene.start('Scene3');
+      }
+    });
   }
 }
 

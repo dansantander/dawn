@@ -31,7 +31,7 @@ class Scene3 extends Phaser.Scene {
       650,
       'btnMenu1',
       'btnMenu2',
-      'Scene0',
+      'MenuScene',
     );
 
     this.playButton = new Button(
@@ -40,11 +40,11 @@ class Scene3 extends Phaser.Scene {
       650,
       'btnPlay1',
       'btnPlay2',
-      'Scene1',
+      'GameScene',
     );
 
     apiData.getData().then((response) => {
-      console.log(response.result[0]);
+      console.log(response.result);
       response.result.sort((a, b) => b.score - a.score);
       console.log(response.result[0]);
       let listItems = '';

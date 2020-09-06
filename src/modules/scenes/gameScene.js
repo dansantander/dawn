@@ -21,9 +21,9 @@ const createTextureLoop = (scene, quantity, texture, scrollFactor) => {
   }
 };
 
-class Scene1 extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene1' });
+    super({ key: 'GameScene' });
     /* eslint-disable */
     this.bg0;
     this.bg1;
@@ -96,12 +96,12 @@ class Scene1 extends Phaser.Scene {
     });
 
     // adding a platform to the game, the arguments are platform width, x position, and y position
-    this.addPlatform(250, 400, 300);
+    this.addPlatform(500, 400, 300);
 
     this.crystals = this.physics.add.group({
       key: 'crystal',
       repeat: 6,
-      setXY: { x: 500, y: 0, stepX: 200 },
+      setXY: { x: 400, y: 0, stepX: 200 },
     });
 
     /* const platforms = this.physics.add.staticGroup();
@@ -148,7 +148,7 @@ class Scene1 extends Phaser.Scene {
         delay: 1000,
         callbackScope: this,
         callback: () => {
-          this.scene.start('GameOver');
+          this.scene.start('GameOver', { score: this.score });
         },
       });
     }
@@ -225,4 +225,4 @@ class Scene1 extends Phaser.Scene {
 }
 
 
-export default Scene1;
+export default GameScene;

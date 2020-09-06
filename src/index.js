@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import LoadScene from './modules/scenes/loadScene';
-import Scene0 from './modules/scenes/scene0';
-import Scene1 from './modules/scenes/scene1';
-import Scene2 from './modules/scenes/scene2';
+import MenuScene from './modules/scenes/menuScene';
+import GameScene from './modules/scenes/gameScene';
+import InstructionsScene from './modules/scenes/instructionsScene';
 import Scene3 from './modules/scenes/scene3';
 import GameOver from './modules/scenes/gameOver';
 
@@ -21,7 +21,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [LoadScene, Scene0, Scene1, Scene2, Scene3, GameOver],
+  scene: [LoadScene, MenuScene, GameScene, InstructionsScene, Scene3, GameOver],
 };
 
 // eslint-disable-next-line no-unused-vars
