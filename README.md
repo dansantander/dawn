@@ -20,19 +20,19 @@ A JavaScript endless runner game built with Phaser 3.
 
 ### Installation
 
-- You can get a local copy of the repository please run the following commands on your terminal:
+- You can get a local copy of the repository by running the following commands in your terminal:
 ```
 $ cd <folder>
-$ git clone git@github.com:dansantander/moonglitch.git
+$ git clone git@github.com:dansantander/dawn.git
 ```
-- Open your terminal and go inside the folder of the project you just cloned
+- Go inside the folder of the project you just cloned
 - Run the command 'node server.js'
 - Finally go to your browser and type localhost:8080 in the adress bar
 
 ### Game Concept
 
 It's year 2030.
-10 years ago, Moon was blasted by a weird out of orbit asteroid, spreading our known concept of unidirectional time into multidirectional time layers and causing strange random loopings and glitches.
+10 years ago, Moon was blasted by a weird out of orbit asteroid, spreading our known concept of unidirectional time into multidirectional time layers and causing strange random loopings and glitches in our reality.
 Later we found that the so called 'asteroid' was part of a bigger plan to harness the infinite energy produced by the loopings.
 We don't know who the author of this evil plan is, but it seems someone is trying to help us too by leaving what we know as Ruby Gems all around the world.
 In order to be able to figure out how to break out of the loops, we need to collect as much Ruby Gems as we can.
