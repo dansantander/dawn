@@ -87,7 +87,7 @@ class LoadScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
-      this.scene.start('InstructionsScene');
+      this.scene.start('MenuScene');
     });
   }
 }

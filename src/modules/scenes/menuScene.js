@@ -23,9 +23,9 @@ class MenuScene extends Phaser.Scene {
     bg2.scaleX = bg2.scaleY;
 
     const bg3 = this.add.image(width / 2, height / 2, 'bg3');
-    bg3.y = 400;
+    bg3.y = 450;
 
-    const logo = this.add.image(width / 2, 200, 'logo');
+    const logo = this.add.image(width / 2, 170, 'logo');
     logo.setScale(1.2);
 
     this.startButton = new Button(
@@ -52,7 +52,7 @@ class MenuScene extends Phaser.Scene {
       (height / 2) + 200,
       'btnSC1',
       'btnSC2',
-      'Scene3',
+      'ScoresScene',
     );
   }
 }

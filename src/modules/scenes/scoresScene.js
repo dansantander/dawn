@@ -2,9 +2,9 @@ import Phaser from 'phaser';
 import apiData from '../../api';
 import Button from '../helpers/button';
 
-class Scene3 extends Phaser.Scene {
+class ScoresScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'Scene3' });
+    super({ key: 'ScoresScene' });
   }
 
   create() {
@@ -44,9 +44,9 @@ class Scene3 extends Phaser.Scene {
     );
 
     apiData.getData().then((response) => {
-      console.log(response.result);
+      /* console.log(response.result); */
       response.result.sort((a, b) => b.score - a.score);
-      console.log(response.result[0]);
+      /* console.log(response.result[0]); */
       let listItems = '';
 
       for (let i = 0; i < 10; i += 1) {
@@ -62,4 +62,4 @@ class Scene3 extends Phaser.Scene {
   }
 }
 
-export default Scene3;
+export default ScoresScene;

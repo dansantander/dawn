@@ -7,7 +7,8 @@ import moon from '../../assets/bg/moon.png';
 import heroRun from '../../assets/hero/heroRun3.png';
 import heroJump from '../../assets/hero/heroJump.png';
 import platform1 from '../../assets/platforms/platform1.png';
-import crystal from '../../assets/objects/crystal.png';
+import crystal2 from '../../assets/objects/crystal2.png';
+import canonBall from '../../assets/objects/canonBall.png';
 
 const createTextureLoop = (scene, quantity, texture, scrollFactor) => {
   let x = 0;
@@ -28,6 +29,7 @@ class GameScene extends Phaser.Scene {
     this.bg0;
     this.bg1;
     this.bg2;
+    this.crystals;
     /* eslint-enable */
   }
 
@@ -38,13 +40,14 @@ class GameScene extends Phaser.Scene {
     this.load.spritesheet('heroRun', heroRun, { frameWidth: 62, frameHeight: 47 });
     this.load.spritesheet('heroJump', heroJump, { frameWidth: 60, frameHeight: 56 });
     this.load.spritesheet('moon', moon, { frameWidth: 113, frameHeight: 92 });
+    this.load.spritesheet('canonBall', canonBall, { frameWidth: 9, frameHeight: 25 });
     this.load.image('platform1', platform1);
-    this.load.image('crystal', crystal);
+    this.load.image('crystal2', crystal2);
   }
 
   create() {
     this.physics.world.setBounds(-100, 0,
-      this.sys.game.config.width * 3, this.sys.game.config.height);
+      this.sys.game.config.width * 3, this.sys.game.config.height + 150);
 
     const { width } = this.game.scale; /* const width = this.game.scale.width; */
     const { height } = this.game.scale;
@@ -73,10 +76,6 @@ class GameScene extends Phaser.Scene {
     this.scoreText = this.add.text(900, 16, 'score: 0', { fontSize: '20px', fill: '#fff' });
     this.scoreText.setScrollFactor(0);
 
-    // ++ Ground & Lava ++
-    /*  const ground = this.physics.add.staticGroup();
-    ground.create(150, 700, 'platform1').setScale(2).refreshBody(); */
-
     // ++ Platforms ++
 
     // group with all active platforms.
@@ -98,26 +97,29 @@ class GameScene extends Phaser.Scene {
     // adding a platform to the game, the arguments are platform width, x position, and y position
     this.addPlatform(500, 400, 300);
 
-    this.crystals = this.physics.add.group({
-      key: 'crystal',
-      repeat: 6,
-      setXY: { x: 400, y: 0, stepX: 200 },
+    this.timedEvent = this.time.addEvent({
+      delay: 2000,
+      callback: this.dropCrystals,
+      callbackScope: this,
+      loop: true,
     });
 
-    /* const platforms = this.physics.add.staticGroup();
-    platforms.create(700, 600, 'platform1').setScale(2).refreshBody(); */
+    this.timedEvent = this.time.addEvent({
+      delay: 2000,
+      callback: this.dropCanonBalls,
+      callbackScope: this,
+      loop: true,
+    });
 
-    this.hero = new Hero(this, 50, 300, 'heroRun');
-
-    this.physics.add.overlap(this.hero, this.crystals, this.collectCrystal, null, this);
+    this.hero = new Hero(this, 200, 400, 'heroRun');
 
     // Colliders
-    this.physics.add.collider(this.crystals, this.platformGroup);
     this.hero.setCollideWorldBounds(true);
-    /* this.physics.add.collider(this.hero, ground); */
     this.physics.add.collider(this.hero, this.platformGroup);
+    this.physics.add.collider(this.hero, this.fixedPlatforms);
 
-    this.cameras.main.setBounds(0, 0, width * 2, height);
+    // Camera
+    this.cameras.main.setBounds(0, 0, width * 1.4, height);
   }
 
   update() {
@@ -143,8 +145,7 @@ class GameScene extends Phaser.Scene {
       this.hero.jump();
     }
 
-    if (this.hero.y > 600 || this.hero.x < cam.scrollX - 100) {
-      this.physics.pause();
+    if (this.hero.y > 700 || this.hero.x < cam.scrollX - 100) {
       this.time.addEvent({
         delay: 1000,
         callbackScope: this,
@@ -155,11 +156,12 @@ class GameScene extends Phaser.Scene {
     }
 
     // recycling platforms
-    let minDistance = 2200;
+    let minDistance = 1200;
+    // eslint-disable-next-line no-unused-vars
     let rightmostPlatformHeight = 0;
 
     this.platformGroup.getChildren().forEach((platform) => {
-      const platformDistance = 900 - platform.x - platform.displayWidth / 2;
+      const platformDistance = 1200 - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
         rightmostPlatformHeight = platform.y;
@@ -172,18 +174,9 @@ class GameScene extends Phaser.Scene {
     }, this);
 
     if (minDistance > this.nextPlatformDistance) {
-      const nextPlatformWidth = Phaser.Math.Between(80, 250);
-      const platformRandomHeight = 10 * Phaser.Math.Between(-10, 10);
-
-      const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
-      const minPlatformHeight = window.innerHeight * 0.4;
-      const maxPlatformHeight = window.innerHeight * 0.6;
-      const nextPlatformHeight = Phaser.Math.Clamp(
-        nextPlatformGap,
-        minPlatformHeight,
-        maxPlatformHeight,
-      );
-      this.addPlatform(nextPlatformWidth, 2200 + nextPlatformWidth / 2, nextPlatformHeight);
+      const nextPlatformWidth = Phaser.Math.Between(120, 250);
+      const nextPlatformHeight = Phaser.Math.Between(450, 600);
+      this.addPlatform(nextPlatformWidth, 1500, nextPlatformHeight);
     }
   }
 
@@ -200,18 +193,16 @@ class GameScene extends Phaser.Scene {
       this.platformPool.remove(platform);
     } else {
       platform = this.physics.add.sprite(posX, 500, 'platform1');
-      /* platform.setScale(2); */
-      platform.setVelocityX(Phaser.Math.Between(-150, -200));
+      platform.setVelocityX(Phaser.Math.Between(-250, -350));
       platform.setGravityY(-400);
       platform.setImmovable(true); // so that it doesn't move with an object collision
       this.platformGroup.add(platform);
     }
     platform.displayWidth = platformWidth;
-    this.nextPlatformDistance = 200;
-    // Phaser.Math.Between(70, 200);
+    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
   }
 
-  collectCrystal(character, crystal) {
+  collectCrystal(hero, crystal) {
     crystal.disableBody(true, true);
 
     this.score += 10;
@@ -222,6 +213,41 @@ class GameScene extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
     }
+  }
+
+  dropCrystals() {
+    this.crystals = this.physics.add.group({
+      key: 'crystal2',
+      repeat: 6,
+      setXY: { x: 550, y: 230, stepX: 200 },
+    });
+    this.physics.add.collider(this.crystals, this.platformGroup);
+    this.physics.add.overlap(this.hero, this.crystals, this.collectCrystal, null, this);
+  }
+
+  dropCanonBalls() {
+    this.canonBall = this.physics.add.sprite(Phaser.Math.Between(0, 2200), 0, 'canonBall');
+    this.anims.create({
+      key: 'canonBall',
+      frames: this.anims.generateFrameNumbers('canonBall', { start: 0, end: 10 }),
+      frameRate: 20,
+      repeat: -1,
+    });
+    this.canonBall.anims.play('canonBall', true);
+    this.canonBall.setScale(3);
+    this.physics.add.overlap(this.hero, this.canonBall, this.canonBallHit, null, this);
+  }
+
+  canonBallHit() {
+    this.physics.pause();
+    this.hero.setTint(0xff0000);
+    this.time.addEvent({
+      delay: 1000,
+      callbackScope: this,
+      callback: () => {
+        this.scene.start('GameOver', { score: this.score });
+      },
+    });
   }
 }
 

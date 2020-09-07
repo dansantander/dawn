@@ -45,13 +45,13 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
       case 'right': {
         this.flipX = false;
         this.anims.play('run', true);
-        this.setVelocityX(300);
+        this.setVelocityX(350);
         break;
       }
       case 'left': {
         this.flipX = true;
         this.anims.play('run', true);
-        this.setVelocityX(-300);
+        this.setVelocityX(-350);
         break;
       }
       default: { break; }
@@ -60,7 +60,7 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
 
   jump() {
     this.anims.play('jump', true);
-    this.setVelocityY(-280);
+    this.setVelocityY(-290);
   }
 }
 

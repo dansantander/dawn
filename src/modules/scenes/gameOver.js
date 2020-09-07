@@ -36,15 +36,6 @@ class GameOver extends Phaser.Scene {
       'MenuScene',
     );
 
-    this.playButton = new Button(
-      this,
-      1020,
-      650,
-      'btnPlay1',
-      'btnPlay2',
-      'GameScene',
-    );
-
     const inputScore = this.add.dom(width / 2, (height / 2) + 100).createFromHTML(formHTML);
     document.clear();
     this.cont = this.add.container(0, 0);
