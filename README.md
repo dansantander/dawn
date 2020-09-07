@@ -1,6 +1,8 @@
 # MOON GLITCH
 A JavaScript endless runner game built with Phaser 3.
 
+![screenshot](./src/assets/bg/screenShot.png)
+
 ## Table of Contents
 
 * [Game Instructions](#game-instructions)
@@ -34,9 +36,6 @@ Later we found that the so called 'asteroid' was part of a bigger plan to harnes
 We don't know who the author of this evil plan is, but it seems someone is trying to help us too by leaving what we know as Ruby Gems all around the world.
 In order to be able to figure out how to break out of the loops, we need to collect as much Ruby Gems as we can.
 Think you have what it takes to help human kind getting rid of this nightmare?
-
-![screenshoot](./readmeImg/gameReadme.png)
-
 
 ### How to play
 
