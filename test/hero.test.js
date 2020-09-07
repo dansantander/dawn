@@ -16,6 +16,6 @@ test('Test if a hero is created correctly, it is not undefined', () => {
   expect(hero).not.toBe(undefined);
 });
 
-test('Test if a wizard constructor is called when a hero is created', () => {
+test('Test if a hero constructor is called when a hero is created', () => {
   expect(Hero).toHaveBeenCalled();
 });

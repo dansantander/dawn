@@ -25,24 +25,25 @@ A JavaScript endless runner game built with Phaser 3.
 $ cd <folder>
 $ git clone git@github.com:dansantander/dawn.git
 ```
-- Go inside the folder of the project you just cloned
-- Run the command 'node server.js'
-- Finally go to your browser and type localhost:8080 in the adress bar
+- Run the command 'node server.js' inside the folder of the project you just cloned.
+- Finally go to your browser and type localhost:8080 in the address bar.
 
 ### Game Concept
 
 It's year 2030.
-10 years ago, Moon was blasted by a weird out of orbit asteroid, spreading our known concept of unidirectional time into multidirectional time layers and causing strange random loopings and glitches in our reality.
+10 years ago, Moon was blasted by a weird out-of-orbit asteroid, spreading our known concept of unidirectional time into multidirectional time layers and causing strange random loopings and glitches in our reality.
 Later we found that the so called 'asteroid' was part of a bigger plan to harness the infinite energy produced by the loopings.
-We don't know who the author of this evil plan is, but it seems someone is trying to help us too by leaving what we know as Ruby Gems all around the world.
-In order to be able to figure out how to break out of the loops, we need to collect as much Ruby Gems as we can.
+Loops keep damaging Earth's gravitational field, causing natural disasters all over the world.
+We don't know who the author of this evil plan is, but it seems someone is trying to help us too by leaving what we know as Ruby Gems scattered all around the globe.
+Ruby Gems seem to stop loops at least for a while.
+In order to be able to figure out how to break the loops for good, we need to collect as much Ruby Gems as we can.
 Think you have what it takes to help human kind getting rid of this nightmare?
 
 ### How to play
 
-- To move our character you should use the left and arrow keys on your keyboard.
-- You can jump with the up arrow key.
-- Collect Ruby gems in order to increase score.
+- To move the character you should use the 'left' and 'right' arrow keys on your keyboard.
+- You can jump with the 'up' arrow key.
+- Collect Ruby Gems in order to increase score.
 - Avoid nitrogen fire balls and falling from platforms.
 
 #### Kobe (The Hero)
@@ -68,10 +69,10 @@ Think you have what it takes to help human kind getting rid of this nightmare?
 ## Future Features
 
 - More fire balls.
-- Enemies
-- Hero can use his katana to fight against enemies
-- Difficulty increasing after certain number of scored points
-- Double jumps for hero to reach higher platforms
+- Enemies.
+- Hero can use his katana to fight against enemies.
+- Difficulty increasing after certain number of scored points.
+- Double jumps for hero to reach higher platforms.
 
 ## Built With
 - Javascript
@@ -89,15 +90,15 @@ Think you have what it takes to help human kind getting rid of this nightmare?
 - Unit tests with Jest. You can run the tests with the following code:
 
 ```
-$ npm test
+$ npm run test
 ```
 
 ## Design Credits
 
-- All assets used in this game came frome [itch.io](https://itch.io/game-assets/free)
-- [Moonglitch](https://hugues-laborde.itch.io/environment-pack-01) and platforms are part of Hugues Laborde's work
-- [Fireballs](https://stealthix.itch.io/animated-fires) used in this game are part of Sealhix's work
-- The [hero](https://luizmelo.itch.io/martial-hero) sprite sheet used is part of Luis Meloz's work 
+- All assets used in this game came from [itch.io](https://itch.io/game-assets/free).
+- [Moonglitch](https://hugues-laborde.itch.io/environment-pack-01) and platforms are part of Hugues Laborde's work.
+- [Fireballs](https://stealthix.itch.io/animated-fires) used in this game are part of Sealhix's work.
+- The [hero](https://luizmelo.itch.io/martial-hero) sprite sheet used is part of Luis Meloz's work .
 
 ## Contributing
 
