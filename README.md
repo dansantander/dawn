@@ -25,8 +25,9 @@ A JavaScript endless runner game built with Phaser 3.
 $ cd <folder>
 $ git clone git@github.com:dansantander/moonglitch.git
 ```
-- Open your terminal and go inside the folder you just cloned
-- Run the command 'npm run-script start' and it will build and open the game on a new browser window.
+- Open your terminal and go inside the folder of the project you just cloned
+- Run the command 'node server.js'
+- Finally go to your browser and type localhost:8080 in the adress bar
 
 ### Game Concept
 
