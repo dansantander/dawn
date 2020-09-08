@@ -12,7 +12,6 @@ const apiData = (() => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          // mode: 'no-cors',
         },
       );
       return scores.json();
@@ -21,16 +20,6 @@ const apiData = (() => {
     }
   }
 
-
-  /* const getData = () => new Promise((resolve, reject) => {
-    fetch(urlRequest, { mode: 'no-cors' })
-      .then(response => response.json()
-        .then((json) => {
-          resolve(json.result);
-        }))
-      .catch(reject);
-  });
- */
   const storeData = async (name, score) => {
     const jsonObj = {
       name, // user: name,
