@@ -1,0 +1,55 @@
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: monospace;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: white;
+  }
+
+  span,
+  h1 {
+    font-size: 30px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    align-self: center;
+    color: white;
+  }
+
+  input {
+    font-size: 18px;
+    padding: 10px 20px;
+    width: 250px;
+    border: none;
+    border-radius: 50px;
+    color: royalblue;
+  }
+
+  button {
+    margin-top: 5px;
+    color: white;
+    width: 250px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: rgba(132, 132, 187, 0);
+  }
+
+  button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(78, 70, 185);
+  }
+</style>
+<div>
+  <span>Save your score</span>
+  <h1 id="score"></h1>
+  <input type="text" name="nameInput" id="nameInput" placeholder="Your name">
+  <button id="submitBtn">SUBMIT</button>
+</div>
