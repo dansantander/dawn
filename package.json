@@ -53,7 +53,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/test/mocks/styleMock.js",
-      "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/mocks/fileMock.js"
+      "\\.(gif|ttf|eot|svg|png|html)$": "<rootDir>/test/mocks/fileMock.js"
     }
   }
 }
