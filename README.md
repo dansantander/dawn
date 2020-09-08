@@ -18,6 +18,11 @@ A JavaScript endless runner game built with Phaser 3.
 
 ## Game Instructions
 
+### Prerequisites
+
+- Node. If you do not have Node installed in your local machine, please refer to the [Official Documentation](https://nodejs.org/en/download/)
+- Basic terminal or command line knowledge.
+
 ### Installation
 
 - You can get a local copy of the repository by running the following commands in your terminal:
@@ -25,8 +30,8 @@ A JavaScript endless runner game built with Phaser 3.
 $ cd <folder>
 $ git clone git@github.com:dansantander/dawn.git
 ```
-- Run the command 'node server.js' inside the folder of the project you just cloned.
-- Finally go to your browser and type localhost:8080 in the address bar.
+- Run the command 'npm start' inside the folder of the project you just cloned to run the server.
+- Finally, open [http://localhost:8080/](http://localhost:8080/) on your browser.
 
 ### Game Concept
 
@@ -65,6 +70,29 @@ Think you have what it takes to help human kind getting rid of this nightmare?
 ## Demo
 
 [Live Demo](https://intense-journey-88840.herokuapp.com/)
+
+## Game Development Stages
+
+- **Day 1**
+**Learn Phaser 3 module**
+ The main goal for this first day was to learn the basics of how to use Phaser. I coded along the Phaser game basics tutorial and some YouTube tutorials to get familiar with the syntax and how everything worked together. As I wanted to achieve a Parallax effect for my background to make it look cool when my character moved, I stubbornly dedicated a lot of time on it, but by the end of Day 1, I was able to achieve both of my goals, thus understanding Phaser's general features.
+
+- **Day 2**
+**Game Design**
+ My goal for the second day was to design the whole concept of my game and finding the textures and sprites for my character and game environment. As I was scrolling through game assets websites I found the moon glitch sprite which immediately led me to my 'Eureka' moment. I decided to go with something that combined two cool concepts: Science fiction and samurais. By the end of Day 2, I had my whole game concept and a bunch of assets to pick from.
+
+- **Day 3**
+**Scene Development**
+ My goal for this day was to complete all of the game scenes without getting too much into the game logic. I coded the API calls and the basic layouts of all of my scenes. Then, I started polishing some of my game assets, which consumed a lot of my time for I had to trim some of them to fit perfectly into the animation frames. By the end of Day 3, I had my whole scenes working perfectly and the API calls as well.
+
+- **Day 4**
+**Game Development**
+ My goal for Day 4 was to actually work on my game code. This day was tough because some of the gaps in my Phaser knowledge started to appear before me. I had to read Phaser documentation more in-depth and revisit some of the tutorials I watched on Day 1. By the end of Day 4, I achieved to build a very basic functionality for my game.
+
+- **Day 5**
+**Testing & Deployment**
+ My goal for this day was to work on the tests and Heroku deployment. I watched some mock testing tutorials and revisited Jest website. Heroku deployment was not that demanding.
+By the end of Day 5, I submitted my project for TSE revision.
 
 ## Future Features
 
